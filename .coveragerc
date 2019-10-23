@@ -1,0 +1,8 @@
+[run]
+branch = true
+
+[report]
+omit =
+    python/pcasig/etc/*
+    python/pcasig/utils/*
+    python/pcasig/tests/*
