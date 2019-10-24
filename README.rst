@@ -8,7 +8,7 @@ GLS-based downprojection from data space to PC space
 .. |docs| image:: https://readthedocs.org/projects/sdss-pcasig/badge/?version=latest
     :alt: Documentation Status
     :scale: 100%
-    :target: https://sdss-pcasig.readthedocs.io/en/latest/?badge=latest
+    :target: https://pcasig.readthedocs.io/en/latest/?badge=latest
 
 .. |travis| image:: https://travis-ci.org/zpace/pcasig.svg?branch=master
    :target: https://travis-ci.org/zpace/pcasig
