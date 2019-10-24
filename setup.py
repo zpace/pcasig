@@ -32,7 +32,7 @@ def run(packages, install_requires):
           author='Zachary Pace',
           author_email='zpace21@gmail.com',
           keywords='astronomy software',
-          url='https://github.com/sdss/pca_cov_downproject',
+          url='https://github.com/zpace/pcasig',
           include_package_data=True,
           packages=packages,
           install_requires=install_requires,
