@@ -3,8 +3,8 @@
 # @Author: Zachary Pace
 # @Date: 23 Oct 2019
 # @Filename: gls.py
-# @License:
-# @Copyright:
+# @License: BSD
+# @Copyright: 2019
 
 import numpy as np
 import scipy.linalg as spla

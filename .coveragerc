@@ -6,3 +6,5 @@ omit =
     python/pcasig/etc/*
     python/pcasig/utils/*
     python/pcasig/tests/*
+    python/pcasig/core/exceptions.py
+    python/pcasig/example.py
