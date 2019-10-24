@@ -4,6 +4,8 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 from .utils import get_config, get_logger
 
+from gls import *
+
 
 NAME = 'pcasig'
 
