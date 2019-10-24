@@ -18,7 +18,7 @@ import sys
 # The NAME variable should be of the format "sdss-pcasig".
 # Please check your NAME adheres to that format.
 NAME = 'pcasig'
-VERSION = '0.2.5dev'
+VERSION = '0.2.6dev'
 RELEASE = 'dev' in VERSION
 
 
