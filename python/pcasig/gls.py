@@ -16,8 +16,8 @@ def cov_chol_lower(sig):
     
     Parameters
     ----------
-    sig : {np.ndarray}
-        l-by-l matrix
+    sig : :class:`~numpy:numpy.ndarray`
+        array shape (l, l)
     """
 
     return spla.cholesky(sig, lower=True, check_finite=False)
@@ -32,11 +32,11 @@ def solve_downproject_gls(y, X, sig):
     
     Parameters
     ----------
-    y : {np.ndarray}
+    y : :class:`~numpy:numpy.ndarray`
         array shape (l, ), representing observations
-    X : {np.ndarray}
+    X : :class:`~numpy:numpy.ndarray`
         array shape (l, q) describing principal component vectors (q << l)
-    sig : {np.ndarray}
+    sig : :class:`~numpy:numpy.ndarray`
         array shape (l, l) describing covariance of measurements
     """
     l, q = X.shape

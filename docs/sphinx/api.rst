@@ -6,10 +6,10 @@ pcasig Reference
 
 .. _api-main:
 
-Main
+gls
 ----
 
-.. automodule:: pcasig.main
+.. automodule:: pcasig.gls
    :members:
    :undoc-members:
    :show-inheritance:

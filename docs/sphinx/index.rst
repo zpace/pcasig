@@ -7,12 +7,12 @@
 
 .. rubric:: :header_no_toc:`Welcome to pcasig's documentation!`
 
-This is the Sphinx documentation for the SDSS Python product pcasig
+This is the Sphinx documentation for pcasig, which solves linear systems given covariate uncertainties.
 
 Introduction
 ------------
 
-A description of the package can go here.
+As the package name suggests, the linear-system solutions are especially useful when projecting observation vectors down on a system of principal component vectors.
 
 * :ref:`What's new in pcasig? <changelog>`
 * :ref:`Introduction to pcasig <intro>`
