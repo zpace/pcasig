@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import pcasig.gls as gls
-import pcasig.generate as gen
+from utils import *
 
 def example_gls(l, q, perturb_prob=0., perturb_std=10.):
     """Example randomized GLS downprojection with outliers
@@ -30,18 +30,18 @@ def example_gls(l, q, perturb_prob=0., perturb_std=10.):
         standard-deviation of outlier distribution
         (the default is 10.)
     """
-    K = gen.gen_cov(l)
-    pc_eigv, X = gen.gen_pca_system(l, q)
+    K = gen_cov(l)
+    pc_eigv, X = gen_pca_system(l, q)
     a0 = np.random.randn(q) * pc_eigv
     y0 = a0 @ X.T
-    y = np.random.multivariate_normal(y0, Kobs)
+    y = np.random.multivariate_normal(y0, K)
 
     is_perturbed = np.random.rand(l) < perturb_prob
     y[is_perturbed] = perturb_std * \
                       np.random.randn(l)[is_perturbed]
 
-    sol, asol_sig, asol_resid = gls.solve_downproject_gls(
-        y, X, Kobs)
+    asol, asol_sig, asol_resid = gls.downproject(
+        y, X, K)
     yrecon = asol @ X.T
 
     plt.scatter(y0, y, edgecolor='None', label='obs')

@@ -22,7 +22,7 @@ def cov_chol_lower(sig):
 
     return spla.cholesky(sig, lower=True, check_finite=False)
 
-def solve_downproject_gls(y, X, sig):
+def downproject(y, X, sig):
     """solve PCA downprojection from data-space to PC-space with generalized least-squares
     
     project data down from an observation vector to a principal component amplitude
@@ -38,8 +38,29 @@ def solve_downproject_gls(y, X, sig):
         array shape (l, q) describing principal component vectors (q << l)
     sig : :class:`~numpy:numpy.ndarray`
         array shape (l, l) describing covariance of measurements
+
+    Returns
+    -------
+    :class:`~numpy:numpy.ndarray`
+        solution
+    :class:`~numpy:numpy.ndarray`
+        covariance of solution
+    :class:`~numpy:numpy.ndarray`
+        residual
     """
+    assert len(X.shape) == 2, \
+           'PC system must be 2d'
     l, q = X.shape
+
+    if len(np.array(y).shape) < 1:
+        raise ValueError('y must be a vector')
+    elif len(y.shape) > 1:
+        raise NotImplementedError('more than one observation not supported')
+
+    assert y.shape == (l, ), \
+           'observations must have shape compatible with PC system'
+    assert sig.shape == (l, l), \
+           'covariance must have shape compatible with PC system'
     
     # compute lower-triangular cholesky decomposition of cov
     L = cov_chol_lower(sig)

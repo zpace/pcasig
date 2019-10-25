@@ -10,7 +10,7 @@ from __future__ import unicode_literals
 
 from pytest import mark, raises
 
-from pcasig.gls import solve_downproject_gls, cov_chol_lower
+from pcasig.gls import downproject, cov_chol_lower
 from pcasig.utils import *
 
 import numpy as np
@@ -40,7 +40,7 @@ class TestDownproject(object):
                'should have (l, q) = ({}, {}) eigenvalue system: is {}'.format(
                     l, q, X.shape)
 
-        a, a_sig, resid = solve_downproject_gls(
+        a, a_sig, resid = downproject(
             y=np.zeros(l), X=X, sig=K)
 
         assert a.shape == (q, ), \
@@ -52,6 +52,29 @@ class TestDownproject(object):
         assert resid.shape == (l, ), \
                'should have l = {} residual: is {}'.format(
                     l, resid.shape)
+
+    @mark.parametrize(('y', 'sig', 'X', 'exc'),
+                      [(np.ones(10), np.eye(10), np.ones(10), AssertionError),
+                       (1, np.eye(10), np.ones((10, 2)), ValueError),
+                       (np.ones((10, 2)), np.eye(10), np.ones((10, 2)), NotImplementedError),
+                       (np.ones(9), np.eye(10), np.ones((10, 2)), AssertionError),
+                       (np.ones(10), np.eye(10, 9), np.ones((10, 2)), AssertionError)])
+    def test_input_shape_feedback(self, y, sig, X, exc):
+        """test shape assertions catching bad shapes
+        
+        Parameters
+        ----------
+        y : class:`~numpy:numpy.ndarray`
+            observations
+        sig : class:`~numpy:numpy.ndarray`
+            covariance
+        X : class:`~numpy:numpy.ndarray`
+            PC system
+        exc : Exception
+            expected exception
+        """
+        with raises(exc):
+            res = downproject(y, X, sig)
 
 class TestCovCholLower(object):
     """Tests for cov_chol_lower
@@ -72,5 +95,14 @@ class TestCovCholLower(object):
                       [(np.ones((10, 10)), spla.LinAlgError),
                        (np.eye(10, 9), ValueError)])
     def test_nonspd(self, K, exc):
+        """K should be positive-definite
+        
+        Parameters
+        ----------
+        K : class:`~numpy:numpy.ndarray`
+            covariance
+        exc : Exception
+            exception expected
+        """
         with raises(exc):
             res = cov_chol_lower(K)
