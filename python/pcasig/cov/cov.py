@@ -7,9 +7,9 @@
 # @Copyright: 2019
 
 import numpy as np
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class CovarianceWithAddedVariance:
     """class of covariance matrices with an added diagonal component
     
