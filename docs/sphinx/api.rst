@@ -13,3 +13,8 @@ gls
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. automodule:: pcasig.cov
+    :members:
+    :undoc-members:
+    :show-inheritance:
