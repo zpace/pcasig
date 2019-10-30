@@ -37,6 +37,12 @@ class CovarianceWithAddedVariance:
 
         self.n, *self.spatial_shape = var.shape
 
+        assert len(self.spatial_shape) >= 1, \
+               'spatial_shape should be non-negligible'
+
     def __getitem__(self, *args, **kwargs):
-        diag = np.diag(self.var.__getitem(*args, **kwargs))
+        diag_select = self.var.__getitem__(*args, **kwargs)
+        assert np.array(diag_select).ndim == 1, \
+               'view of variance must be 1d'
+        diag = np.diag(diag_select)
         return self.K + diag
