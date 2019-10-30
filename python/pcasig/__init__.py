@@ -20,4 +20,4 @@ config = get_config(NAME)
 log = get_logger(NAME)
 
 
-__version__ = '0.3.1dev'
+__version__ = '0.3.2dev'
